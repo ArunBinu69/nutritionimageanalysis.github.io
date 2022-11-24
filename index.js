@@ -1,63 +1,58 @@
-let net = null;
+<!DOCTYPE html>
+<html>
 
+<head>
+	<!-- Include JS files -->
+	<script src="app.js"></script>
+    <link rel="stylesheet" href="cal.css"   > 
+</head>
 
- function showFiles() {
-    // An empty img element
-    let demoImage = document.getElementById('idImage');
-    // read the file from the user
-    let file = document.querySelector('input[type=file]').files[0];
-    const reader = new FileReader();
-    reader.onload = function (event) {
-        demoImage.src = reader.result;
-    }
-    reader.readAsDataURL(file);
-    app();
-}  
+<body>
+    <div class="banner">
+        <div class="navbar">
+            <img src="logo.png" alt="logo">
+            <ul>
+                <li><a href="upload.html"> <<<<<<</a></li>
+                <li><a href="ibm nutrition analyser.html"> HOME</a></li>
+               
+            </ul>
 
-google.charts.load('current', {packages: ['corechart', 'bar']});
+	<div class="container">
+        <br><br>
+        <br><br>
+        <br><br>
+        <br><br>
+        <br><br>
+        <br><br>
+        <br><br>
+        <br><br>
+        <br><br>
+        <br><br>
+        <br><br>
+        <br><br>
+        <br><br>
+        <br><br>
+		<h1>BMI Calculator</h1>
+        <br><br>
 
-function drawStacked(result) {
-    var data_ = Array((result.length + 1));
-    data_[0] = ['clase','Probabilidad', { role: "style" }];
-    data_[1] = [result[0].className, result[0].probability, '#982107'];
-    for (iter = 1; iter < result.length; iter++){
-        data_[(iter + 1)] = [result[iter].className, result[iter].probability, '#6F76C2'];
-    }
-    var data = google.visualization.arrayToDataTable(data_);
-    var view = new google.visualization.DataView(data);
-    view.setColumns([0, 1,
-                     { calc: "stringify",
-                       sourceColumn: 1,
-                       type: "string",
-                       role: "annotation" },
-                     2]);
-    var options = {
-        width: 600,
-        height: 200,
-        bar: {groupWidth: "95%"},
-        legend: { position: "none" },
-      };
-    var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
-    chart.draw(view, options);
-  }
+		<!-- Option for providing height
+			and weight to the user-->
+		<p>Height (in cm)</p>
+        <br>
 
+		<input type="text" id="height"> 
+        <br> <br> 
 
+		<p>Weight (in kg)</p> 
 
-async function app(){
-    console.log('loading mobilenet...');
-    net = await mobilenet.load();
-    console.log('Sucessfully loaded model');
-    await predice();
-}
+		<br><tr><input type="text" id="weight">
+        <div>
+		<button id="btn"><span></span>CALCULATE</button>
+        </div>
+		<div id="result"></div>
+	</div>
+</div>
+</div>
+</body>
 
-
-async function predice(){
-    img_ = document.getElementById('idImage');
-    if (img_.src != ""){
-        const result = await net.classify(img_);
-        drawStacked(result);
-        console.log(result);
-    }
-}
-
-app();
+</html>
